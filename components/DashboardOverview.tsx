@@ -11,16 +11,12 @@ import type { UserProfile } from "../types";
  */
 type DashboardOverviewProps = {
   user: UserProfile;
-  searchQuery: string;
 };
 
 const clamp = (n: number, min: number, max: number) =>
   Math.max(min, Math.min(max, n));
 
-export default function DashboardOverview({
-  user,
-  searchQuery: _searchQuery,
-}: DashboardOverviewProps) {
+export default function DashboardOverview({ user }: DashboardOverviewProps) {
   const n = (user.name || "").trim();
   // maintain previous defaults for internal usage
   const activeNodes = 0;

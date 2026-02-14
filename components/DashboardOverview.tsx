@@ -10,18 +10,16 @@ import type { UserProfile } from "../types";
  * - If your project doesn't support `animate-in` classes, remove them.
  */
 type DashboardOverviewProps = {
-  user: UserProfile;
+  user: any; // quickest fix
+  searchQuery: string;
 
-  // Optional numbers (pass from parent if you have them)
-  activeNodes?: number; // e.g., in_progress acceptances
-  syncingNodes?: number; // e.g., realtime syncing / pending items
-  ecosystemLabel?: string; // e.g., "OPTIMAL"
+  activeNodes?: number;
+  syncingNodes?: number;
+  ecosystemLabel?: string;
 
-  // Widget numbers
-  facultyInfluence?: number; // big number on right widget
-  starsThisWeek?: number; // helper text
+  facultyInfluence?: number;
+  starsThisWeek?: number;
 
-  // Optional actions
   onDeployNode?: () => void;
   onOpenTelemetry?: () => void;
 };

@@ -10,7 +10,7 @@ import type { UserProfile } from "../types";
  * - If your project doesn't support `animate-in` classes, remove them.
  */
 type DashboardOverviewProps = {
-  user: any; // quickest fix
+  user: any;
   searchQuery: string;
 
   activeNodes?: number;
@@ -27,8 +27,9 @@ type DashboardOverviewProps = {
 const clamp = (n: number, min: number, max: number) =>
   Math.max(min, Math.min(max, n));
 
-export default function DashboardOverview({
+const DashboardOverview: React.FC<DashboardOverviewProps> = ({
   user,
+  searchQuery,
   activeNodes = 0,
   syncingNodes = 0,
   ecosystemLabel = "OPTIMAL",
@@ -36,7 +37,7 @@ export default function DashboardOverview({
   starsThisWeek = 0,
   onDeployNode,
   onOpenTelemetry,
-}: DashboardOverviewProps) {
+}: DashboardOverviewProps) => {
   const firstName = useMemo(() => {
     const n = (user?.name || "").trim();
     if (!n) return "Gaya";
@@ -236,4 +237,6 @@ export default function DashboardOverview({
       <div className="mt-10 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </div>
   );
-}
+};
+
+export default DashboardOverview;

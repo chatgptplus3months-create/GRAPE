@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { UserProfile } from "../types";
 
 /**
@@ -10,7 +10,7 @@ import type { UserProfile } from "../types";
  * - If your project doesn't support `animate-in` classes, remove them.
  */
 type DashboardOverviewProps = {
-  user: any;
+  user: UserProfile;
   searchQuery: string;
 };
 
@@ -19,8 +19,9 @@ const clamp = (n: number, min: number, max: number) =>
 
 export default function DashboardOverview({
   user,
-  searchQuery,
+  searchQuery: _searchQuery,
 }: DashboardOverviewProps) {
+  const n = (user.name || "").trim();
   // maintain previous defaults for internal usage
   const activeNodes = 0;
   const syncingNodes = 0;
@@ -29,11 +30,7 @@ export default function DashboardOverview({
   const starsThisWeek = 0;
   const onDeployNode = () => {};
   const onOpenTelemetry = () => {};
-  const firstName = useMemo(() => {
-    const n = (user?.name || "").trim();
-    if (!n) return "Gaya";
-    return n.split(" ")[0];
-  }, [user?.name]);
+  const firstName = n ? n.split(" ")[0] : "Gaya";
 
   // Subtle interactive ping
   const [pulse, setPulse] = useState(false);

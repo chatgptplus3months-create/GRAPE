@@ -12,32 +12,23 @@ import type { UserProfile } from "../types";
 type DashboardOverviewProps = {
   user: any;
   searchQuery: string;
-
-  activeNodes?: number;
-  syncingNodes?: number;
-  ecosystemLabel?: string;
-
-  facultyInfluence?: number;
-  starsThisWeek?: number;
-
-  onDeployNode?: () => void;
-  onOpenTelemetry?: () => void;
 };
 
 const clamp = (n: number, min: number, max: number) =>
   Math.max(min, Math.min(max, n));
 
-const DashboardOverview: React.FC<DashboardOverviewProps> = ({
+export default function DashboardOverview({
   user,
   searchQuery,
-  activeNodes = 0,
-  syncingNodes = 0,
-  ecosystemLabel = "OPTIMAL",
-  facultyInfluence = 0,
-  starsThisWeek = 0,
-  onDeployNode,
-  onOpenTelemetry,
-}: DashboardOverviewProps) => {
+}: DashboardOverviewProps) {
+  // maintain previous defaults for internal usage
+  const activeNodes = 0;
+  const syncingNodes = 0;
+  const ecosystemLabel = "OPTIMAL";
+  const facultyInfluence = 0;
+  const starsThisWeek = 0;
+  const onDeployNode = () => {};
+  const onOpenTelemetry = () => {};
   const firstName = useMemo(() => {
     const n = (user?.name || "").trim();
     if (!n) return "Gaya";
@@ -237,6 +228,6 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
       <div className="mt-10 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </div>
   );
-};
+}
 
-export default DashboardOverview;
+/* exported above as default function */
